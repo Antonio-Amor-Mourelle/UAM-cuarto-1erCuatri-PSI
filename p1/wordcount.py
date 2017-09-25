@@ -50,6 +50,10 @@ def file_to_dict(filename):
     d = {}    
     r = re.compile(r"\W")
     f = open(filename, 'r')
+    # We're using a regular expression that removes not only the whitespaces but
+    # also non alphanumeric symbols
+    # Due to this some english contraction words such as s (It's) and t (Would't) are included in
+    # the dictionary
     for line in f:
         for w in re.split(r, line):
             word = w.lower()
@@ -57,6 +61,7 @@ def file_to_dict(filename):
                 d[word] += 1
             else:
                 d[word] = 1
+    # If no string matches the regular expresion an empty string is added to de dictionary
     del d['']
     return d
 
