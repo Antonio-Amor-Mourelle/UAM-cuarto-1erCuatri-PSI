@@ -1,0 +1,28 @@
+Cadena de conexión:
+	-Conjunto de sentencias que permiten conectarse a la base de datos.
+	Dependiendo del gestor que se use será más o menos difícil.
+	-Para postgres especificar ENGINE, NAME, USER, PASSWORD, HOST y PORT
+	-También se puede especificar la cadena de conexión en formato url:
+	import dj_database_url
+	export DATABASE_URL='postgres://alumnodb:alumnodb@localhost:5432/psi
+	dj_databseurl.config()
+
+Intercambio de información (formularios):
+	-Los datos se mandan siempre al servidor de aplicaciones. El servidor 
+	web lo único que hace es redirigir la información al servidor de 
+	aplicaciones y devolver al cliente documentos html estáticos.
+	-Formulario: caja con pares clave, valor.
+	-Dos métodos de envío del formulario (hay más pero el resto están en
+	desuso):
+		*GET: Los datos del formulario van en la url
+		?campo=valor8
+		No es seguro	
+		*POST: Los datos van dentro del mensaje en la cabecera HTTP
+		Es más seguro pero no del todo, cualquiera que coloque un 
+		sniffer en la red puede ver los datos
+	-Boton submit o JavaScript para enviar los datos (de momento solo el 1)
+	-Los datos no se validan en el envío, sino en el servidor
+	-id referencias dentro del documento, name envío de información
+	En Django el formulario se autogenera. Se crea el modelo con sus clases
+	y el formulario se genera a partir de esas clases. 
+	Las clases heredan de forms.ModelForm       
