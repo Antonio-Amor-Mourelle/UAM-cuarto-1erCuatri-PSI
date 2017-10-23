@@ -25,3 +25,6 @@ urlpatterns = [
     url(r'^rango/', include('rango.urls')),
     url(r'^admin/', admin.site.urls),	
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += static(settings.STATIC_URL, \
+                      document_root=settings.STATIC_ROOT)

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +28,7 @@ SECRET_KEY = ')wq_i*od6h+r@b716$b=i8(lj047t2eydl-dj)$v51znmlfu4*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [u'https://nameless-dawn-47665.herokuapp.com', u'127.0.0.1']
 
 
 # Application definition
@@ -87,13 +88,17 @@ WSGI_APPLICATION = 'tango_with_django_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+# export DATABASE_URL='postgres://alumnodb:alumnodb@localhost:5432/rangodb'
+DATABASES = {}
+if os.getenv('SQLITE', False):
+    DATABASES['default'] = {
+             'ENGINE': 'django.db.backends.sqlite3',
+             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
+    
+else:
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config()
 
 
 # Password validation
@@ -135,3 +140,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+# Parse database configuration from $DATABASE_URL
+STATIC_ROOT = os.path.join(BASE_DIR, 'statickHeroku')
