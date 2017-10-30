@@ -1,0 +1,19 @@
+5: entregar todos los ficheros a tiempo. Por cada entrega parcial
+que falte se descuenta un punto a la nota final. La entrega 
+debe funcionar en local
+
+5-6.9: Es funcional en Heroku.
+7-7.9: Fichero de query funciona bien
+SEMANA 1: 
+	Modelo
+	Admin para el modelo
+	Funcionando en Heroku
+SEMANA 2:
+	Fichero populate (bibliotrca loremipsum python en el lab --user)
+	Sobre las imágenes de los articulos: 
+		import File
+		Abrir el fichero en modo lectura
+		el fichero tiene que estar en el servidor
+		las imágenes deben estar en el directorio que indica la variable MEDIA_ROOT
+		
+	
