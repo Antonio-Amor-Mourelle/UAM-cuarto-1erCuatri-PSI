@@ -26,7 +26,7 @@ SECRET_KEY = '&g6tif99y^0#)96yb_0y71x)j&s3313nm&m01v*rq#2jk%wf90'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'https://gentle-ravine-14871.herokuapp.com/']
+ALLOWED_HOSTS = [u'https://gentle-ravine-14871.herokuapp.com/',u'127.0.0.1']
 
 
 # Application definition
