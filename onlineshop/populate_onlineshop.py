@@ -27,7 +27,7 @@ def populate():
         for i in range(1,7):
             dict = {}
             dict["prodName"] = name + " %d" % i
-            dict["image"] = "#"
+            dict["image"] = "nevera.jpg"
             dict["description"] = generate_sentence()[2]
             dict["price"] = uniform(50, 999)
             products[name].append(dict)
