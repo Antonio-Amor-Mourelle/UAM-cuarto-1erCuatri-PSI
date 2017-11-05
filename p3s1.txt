@@ -12,7 +12,9 @@ SEMANA 2:
 	Fichero populate (bibliotrca loremipsum python en el lab --user)
 	Sobre las imágenes de los articulos: 
 		import File
-		Abrir el fichero en modo lectura
+		Abrir el fichero en modo lectura 
+		Crear el producto (get_or_create)
+		Guardar la imagen en el producto con un update
 		el fichero tiene que estar en el servidor
 		las imágenes deben estar en el directorio que indica la variable MEDIA_ROOT
 		
