@@ -9,10 +9,14 @@
     </head>
 
     <body>
-    	<header> {% block header %}Shop{% endblock %} </header>
-        <div>
-        	{% block shoppingcart %}Nothing so far{% endblock %}
-        </div>
+    	<header> 
+    		<div id="basket">
+        	    {% block shoppingcart %}Nothing so far{% endblock %}
+            </div>
+    		{% block header %}Shop{% endblock %}
+    		
+    	</header>
+
         <div>
             {% block main %}Nothing so far{% endblock %}
         </div>

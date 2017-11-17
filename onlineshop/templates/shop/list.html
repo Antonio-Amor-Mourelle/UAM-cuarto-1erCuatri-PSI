@@ -9,17 +9,17 @@
 {% block shoppingcart %}Your cart is empty {% endblock %}
 
 {% block main %}
-   <nav class="cat-menu">
+   <nav id="cat-menu">
 		<h3>Categories</h3>
 		{% if categories %}
 		<ul>
-			    <li>
-			    	<a href="{% url 'product_list' %}">All</a>
-			    </li>
+			    <a href="{% url 'product_list' %}">
+			    <li>All</li>
+			    </a>
 			{% for category in categories %}
-		    	<li>
-		        <a href="{% url 'product_list_by_category' category.catSlug %}">{{category.catName}}</a>
-		    	</li>
+				<a href="{% url 'product_list_by_category' category.catSlug %}">
+		    	<li>{{category.catName}}</li>
+		    	</a>
 		    {% endfor %}		
 		</ul>
 		{% else %}
@@ -36,12 +36,11 @@
    		{% if products %}
 	   		{% for product in products %}
 	   			<span class="product-card">
-	                <a href="{% url 'product_detail' product.id product.prodSlug %}">
+	                <a class="product-card" href="{% url 'product_detail' product.id product.prodSlug %}">
 	                    <img class="little-image" src="{{ MEDIA_URL }}{{product.image}}" alt="{{product.prodName}}">
 		                <p>{{product.prodName}}</p>
-	                </a>
-	                <br>
-	                {{product.price}}&euro;
+		                <p>{{product.price}}&euro;</p>
+	                </a> 
 	            </span>
 	   		{% endfor %}
 	   	{% else %}
