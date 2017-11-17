@@ -12,7 +12,7 @@ from django.db.utils import IntegrityError
 
 from shop.models import Category, Product
 from onlineshop.settings import MEDIA_ROOT
-from loremipsum import generate_sentence
+from loremipsum import generate_paragraph
 from random import uniform
 
 IMG_DIR = os.path.join(MEDIA_ROOT, 'shop')
@@ -28,7 +28,7 @@ def populate():
             dict = {}
             dict["prodName"] = name + " %d" % i
             dict["image"] = "nevera.jpg"
-            dict["description"] = generate_sentence()[2]
+            dict["description"] = generate_paragraph()[2]
             dict["price"] = uniform(50, 999)
             products[name].append(dict)
         
@@ -43,9 +43,6 @@ def populate():
         for p in cat_data["products"]:
             add_prod(c, p["prodName"], p["image"], p["description"],
                         p["price"])
-    for c in Category.objects.all():
-        for p in Product.objects.filter(category=c):
-            print("- {0} - {1}".format(str(c), str(p)))
 
 
 def add_cat(name):

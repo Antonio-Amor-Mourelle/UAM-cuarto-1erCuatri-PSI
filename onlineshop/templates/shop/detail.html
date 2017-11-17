@@ -1,0 +1,27 @@
+{% extends 'shop/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{% if product %}{{product.prodName}}{% else %}Error{% endif %}{% endblock %}
+
+{% block header %}<h1 class="title">{% if product %}{{product.prodName}}
+{% else %}Error{% endif %}</h1>{% endblock %}
+   
+{% block shoppingcart %}Your cart is empty {% endblock %}
+
+{% block main %}
+   <div class="main-content">
+   		{% if product %}
+   			<h2>{{product.prodName}}</h2>
+   			<h2>{{product.price}}&euro;</h2>
+   			<h3><a href="{% url 'product_list_by_category' product.category.catSlug %}">
+   			{{product.category.catName}}</a></h3>
+   			<p>{{product.description}}</p>
+   			<img src="{{ MEDIA_URL }}{{product.image}}" alt="{{product.prodName}}">
+   		{% else %}
+   			<h2>An error has occurred...</h2>
+   		{% endif %}   		
+		
+   </div>
+   
+{% endblock %}

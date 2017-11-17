@@ -1,0 +1,21 @@
+{% load staticfiles %}
+{% block extra_css %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/mycss.css" %}">
+{% endblock extra_css %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shop - {% block title %}Base{% endblock %}</title>
+    </head>
+
+    <body>
+    	<header> {% block header %}Shop{% endblock %} </header>
+        <div>
+        	{% block shoppingcart %}Nothing so far{% endblock %}
+        </div>
+        <div>
+            {% block main %}Nothing so far{% endblock %}
+        </div>
+
+    </body>
+</html>

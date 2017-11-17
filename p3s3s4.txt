@@ -1,0 +1,22 @@
+Montar el frontal:
+	-Templates: Todas las páginas deben heredar de un template base
+	(secciones 4.1 y 6.)
+		*Template base 4 componentes: Cabecera, titulo, pie de pagina y?
+	-CSS:
+		www.w3c.es->guia breve de css
+		www.w3schools.com->css tutorial
+		estático->directorio staticfiles(sección 4.2)
+		Ventaja de usar CSS en un fichero aparte: es estático y todo 
+		contenido estático en la red se cachea, por tanto se descarga una 
+		sola vez y se guarda en el navegador.
+		Se puede usar bootstrap
+	-Patrón MVC: Django no tiene controlador, hay que implementarlo
+	-Ejecutar test. 2 tipos:
+		1-Test invocando los controladores de Python. Se ejecuta en el 
+		servidor
+		2-Web tester: hace peticiones http. Requiere paquetes selenium(abre
+		un navegador dentro de un entorno controlado, usa un diver de chrome.
+		Hay que decirle en que directorio del PC está eñ chromedriver) y loremipsum
+	-Desplegar en Heroku
+		
+Funcionalidad del catálogo

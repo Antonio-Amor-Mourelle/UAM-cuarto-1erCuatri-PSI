@@ -29,7 +29,7 @@ class Product(models.Model):
     prodName = models.CharField(max_length=128, null=False, unique=True)
     prodSlug = models.SlugField(max_length=128, null=False, unique=True)
     image = models.ImageField(upload_to = 'images/products')
-    description = models.CharField(max_length=1024, null=False)
+    description = models.TextField(max_length=1024, null=False)
     price = models.DecimalField(decimal_places=2, max_digits=5, null=False)
     stock = models.IntegerField(default=0)
     availability = models.BooleanField(default=True)
