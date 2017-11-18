@@ -2,3 +2,4 @@ eclipse.preferences.version=1
 encoding//shop/admin.py=utf-8
 encoding//shop/models.py=utf-8
 encoding/populate_onlineshop.py=utf-8
+encoding/web_test.py=utf-8

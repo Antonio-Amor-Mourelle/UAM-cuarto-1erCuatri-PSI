@@ -19,23 +19,23 @@ IMG_DIR = os.path.join(MEDIA_ROOT, 'shop')
 
 def populate():
     products = {}
-    names = ["nevera", "frigorifico", "cafetera"]
+    names = ["Refrigerator", "Washing-machine", "Dishwasher"]
+    cats = ["refrigerators", "washing machines", "dishwashers"]
     
-    
-    for name in names:  
-        products[name] = []
+    for j in range(3):  
+        products[names[j]] = []
         for i in range(1,7):
             dict = {}
-            dict["prodName"] = name + " %d" % i
-            dict["image"] = "nevera.jpg"
+            dict["prodName"] = names[j] + "-%d" % i
+            dict["image"] = cats[j] + "/" + names[j] + "-%d.jpg" % i
             dict["description"] = generate_paragraph()[2]
             dict["price"] = uniform(50, 999)
-            products[name].append(dict)
+            products[names[j]].append(dict)
         
     cats = {
-            "neveras": {"products": products["nevera"]},
-            "frigorificos": {"products": products["frigorifico"]},
-            "cafeteras": {"products": products["cafetera"]},
+            "Refrigerators": {"products": products["Refrigerator"]},
+            "Washing machines": {"products": products["Washing-machine"]},
+            "Dishwashers": {"products": products["Dishwasher"]},
             }
     
     for cat, cat_data in cats.items():

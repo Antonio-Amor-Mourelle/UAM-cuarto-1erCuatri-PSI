@@ -42,32 +42,32 @@ class viewsTests(TestCase):
 
     def test_produnct_list(self):
         response = self._client.get(reverse('product_list'), follow=True)
-        for cat in ["cafeteras", "frigorificos", "neveras"]:
+        for cat in ["Refrigerators", "Washing machines", "Dishwashers"]:
             self.assertIn(cat, response.content)
-        for cat in ["cafetera", "frigorifico", "nevera"]:
-            for counterProd in range(1, 6):
-                self.assertIn(b"%s %d"%(cat,counterProd), response.content)
+        for cat in ["Refrigerator", "Washing-machine", "Dishwasher"]:
+            for counterProd in range(1, 7):
+                self.assertIn(b"%s-%d"%(cat,counterProd), response.content)
 
     def test_produnct_list_cat_0(self):
         response = self._client.get(reverse('product_list_by_category',
-                                            kwargs={'catSlug':'cafeteras'}), follow=True)
-        for cat in ["cafeteras", "frigorificos", "neveras"]:
+                                            kwargs={'catSlug':'refrigerators'}), follow=True)
+        for cat in ["Refrigerators", "Washing machines", "Dishwashers"]:
             self.assertIn(cat, response.content)
-        for cat in ["cafetera"]:
-            for counterProd in range(1, 6):
-                self.assertIn(b"%s %d"%(cat,counterProd), response.content)
-        for cat in ["frigorifico", "nevera"]:
+        for cat in ["Refrigerator"]:
+            for counterProd in range(1, 7):
+                self.assertIn(b"%s-%d"%(cat,counterProd), response.content)
+        for cat in ["Washing-machine", "Dishwasher"]:
             for counterProd in range(0, 5):
-                self.assertNotIn(b"%s %d" % (cat, counterProd), response.content)
+                self.assertNotIn(b"%s-%d" % (cat, counterProd), response.content)
 
     def test_product_detail_fileName_0_0(self):
-        prodName='cafetera 1'
+        prodName='Refrigerator-1'
         p = Product.objects.get(prodName = prodName)
         response = self._client.get(reverse('product_detail',
                                             kwargs={'id':p.id,
                                                     'prodSlug':p.prodSlug}), follow=True)
-        self.assertIn   (b'cafetera', response.content)
-        self.assertNotIn(b'frigorifico', response.content)
+        self.assertIn   (b'Refrigerators', response.content)
+        self.assertNotIn(b'Washing machines', response.content)
 
         self.assertIn(p.description, response.content)
         self.assertNotIn(b'description_0_1', response.content)
