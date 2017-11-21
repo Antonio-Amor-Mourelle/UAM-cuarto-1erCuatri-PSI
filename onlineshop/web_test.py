@@ -15,7 +15,7 @@ from loremipsum import get_paragraphs, get_sentences
 class onLineShopTester(unittest.TestCase):
     username    = "alumnodb"
     passwd      = "alumnodb"
-    #base_url    = "https://rocky-inlet-76734.herokuapp.com/"
+    #base_url    = "https://gentle-ravine-14871.herokuapp.com/"
     base_url     = "http://127.0.0.1:8000/"
     admin_url    = base_url + "admin/"
     addCategoryPath = "shop/category/add/"
@@ -41,7 +41,7 @@ class onLineShopTester(unittest.TestCase):
                  "Dishwasher-6"]
                 }
     chromeDriver = "/usr/bin/chromedriver"
-    imagesPath = "/home/esther/Escritorio/UAM-cuarto-1erCuatri-PSI/onlineshop/media/shop/"
+    imagesPath = "/home/esther/Escritorio/UAM/cuarto/UAM-cuarto-1erCuatri-PSI/onlineshop/media/shop/"
 
     def setUp(self):
 #        self.driver = webdriver.Firefox()

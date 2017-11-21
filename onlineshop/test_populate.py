@@ -18,9 +18,13 @@ DEBUG = False
 from PIL import Image
 from StringIO import StringIO
 from django.core.files.base import File
-from populate_onlineshop import populate
+from populate_onlineshop import populate #import de la funcion que puebla la base de datos
 
 
+"""
+Funciones de prueba de la base de datos
+Cambios menores realizados con los nombres de los datos de nuestra aplicacion
+"""
 class viewsTests(TestCase):
     def setUp(self):
         self._client   = Client()

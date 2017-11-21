@@ -16,7 +16,10 @@ from loremipsum import generate_paragraph
 from random import uniform
 
 IMG_DIR = os.path.join(MEDIA_ROOT, 'shop')
-
+"""
+Funcion que puebla la base de datos con tres categorias y 6 productos por categoria
+Autor: Antonio Amor Mourelle
+"""
 def populate():
     products = {}
     names = ["Refrigerator", "Washing-machine", "Dishwasher"]
@@ -44,7 +47,11 @@ def populate():
             add_prod(c, p["prodName"], p["image"], p["description"],
                         p["price"])
 
-
+"""
+Funcion que annade una cagtegoria a la base de datos
+Entrada: name: Nombre de la categoria 
+Autor: Esther Lopez Ramos
+"""
 def add_cat(name):
     try:
         c = Category.objects.get_or_create(catName=name)[0]
@@ -53,7 +60,15 @@ def add_cat(name):
         print "Categoria duplicada"
         
     
-
+"""
+Funcion que annade un producto a la base de datos
+Entrada: category: Categoria a la que pertenece el producto
+	name: Nombre del producto
+	img: Ruta de la imagen del producto dentro del directorio media
+	description: descripcion del producto
+	price: precio del producto
+Autor: Esther Lopez Ramos
+"""
 def add_prod(category, name, img, description, price):
     try:
         imageObject = File(open(os.path.join(IMG_DIR, img), 'r'))

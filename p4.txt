@@ -1,0 +1,43 @@
+TDD: Hacer el desarrollo cumpliendo los test poco a poco. No hacer todo el 
+desarrollo y después ir al test
+Funcionalidad:
+	-Carrito de la compra: Variable de sesion->temporal
+	-Formalizacion del pedido: Guardar el pedido en DB. 
+		2 validaciones: Cuando se introduce en el carrito
+				Cuando se formaliza por si ha dejado de tener
+				validez.
+	-Recoger los datos del usuario: En tiempo de formalizacion del pedido.
+		Formulario. 
+		(OPCIONALMENTE se puede añadir un validador de credenciales y
+		se valorara positivamente)
+	-Arquitectura orientada a servicios: 
+		Dos aplicaciones nuevas: shoppingcart, placeorder
+		Cada una se encarga de una funcionalidad
+Contextos persistentes:	2 en esta práctica 
+	REQUEST: empieza con la petición, finaliza con la respuesta del servidor
+		 parámetros de formularios
+		 hasta ahora solo hemos trabajado con ella (render en views)
+	SESSION: empieza cuando una máquina se conecta al servidor
+		 finaliza al acabar la conexión
+		 datos que tienen sentido mientras el usuario interacciona (carrito)
+		 se comparte la sesión entre distintas peticiones
+		 no poner más cosas de las necesarias en sesión, consume recursos
+		 En Django: sesiones con cookies, las guarda en base de datos (!!).
+		 En la clase HttpRequest hay un atributo session
+		 Se accede a sesión como un diccionario ej. request.session[nombre_variable]
+		 Limitaciones en Django: Todo lo que se guarda en session debe ser 
+		 serializable (i.e. strings)
+Semana 1:
+	-Clase ShoppingCart: 
+		no es un modelo de Django, porque no se guarda en DB
+		Atributos:
+			1.Dictionary con las REFERENCIAS a los productos del carro
+			clave: id o prodSlug (el que queramos) debe ser un string
+			valor: otro diccionario con, como mínimo, num unidades y precio
+			Singleton: único para cada sesión
+		Métodos: 
+			...
+			__len__: tamaño del array, entendiéndolo como número total de productos
+			llamar a saveCart cada vez que se modifica la sesión
+			removeProduct: elimina todas las unidades de un producto
+ 

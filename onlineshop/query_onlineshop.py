@@ -12,8 +12,13 @@ from onlineshop.settings import MEDIA_ROOT
 from django.db.utils import IntegrityError
 from django.db.models import ObjectDoesNotExist
 
-IMG_DIR = os.path.join(MEDIA_ROOT, 'shop')
+from populate_onlineshop import add_cat, add_prod
 
+IMG_DIR = os.path.join(MEDIA_ROOT, 'shop')
+"""
+Funcion que puebla la base de datos para posteriormente hacer queries sobre ellos
+Autor: Antonio Amor Mourelle 
+"""
 def populate():
     ofertas_products = [
         {"prodName": "oferta 1",
@@ -61,25 +66,6 @@ def populate():
     for c in Category.objects.all():
         for p in Product.objects.filter(category=c):
             print("- {0} - {1}".format(str(c), str(p)))
-
-
-def add_cat(name):
-    try:
-        c = Category.objects.get_or_create(catName=name)[0]
-        return c
-    except IntegrityError:
-        print "Categoria duplicada"
-        
-
-def add_prod(category, name, img, description, price):
-    try:
-        imageObject = File(open(os.path.join(IMG_DIR, img), 'r'))
-        p = Product.objects.get_or_create(category=category, prodName=name,
-                                      description=description, price = price)[0];
-        p.image.save(img, imageObject, save = True)
-        return p
-    except IntegrityError:
-        print "Producto duplicado"
 
 # Start execution here!
 if __name__ == '__main__':

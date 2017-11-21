@@ -6,6 +6,11 @@ from django.template.defaultfilters import slugify
 from django.utils.timezone import now
 
 # Create your models here.
+"""
+Clase Category
+Representa una categoria de la tienda
+Autor: Antonio Amor Mourelle
+"""
 class Category(models.Model):
     catName=models.CharField(max_length=128, unique=True, null=False)#not null???
     catSlug=models.SlugField(max_length=128, unique=True, null=False)#not null???
@@ -22,7 +27,11 @@ class Category(models.Model):
         self.catSlug = slugify(self.catName)
         super(Category, self).save(*args, **kwargs)
 
-
+"""
+Clase Producto
+Representa un producto de la tienda
+Autor: Antonio Amor Mourelle
+"""
 class Product(models.Model):
     ##cat= Category()##
     category = models.ForeignKey(Category)

@@ -2,9 +2,18 @@ from django.shortcuts import render
 from shop.models import Category, Product
 
 # Create your views here.
+"""
+Funcion que llama al template base de la aplicacion
+Autor: Esther Lopez Ramos
+"""
 def base(request):
     return render(request, 'shop/base.html')
-    
+
+"""
+Funcion que "rellena" los datos necesarios para la pagina principal
+Entrada: catSlug: Categoria para filtrar los productos (si no se especifica se muestran todas)
+Autor: Esther Lopez Ramos
+"""    
 def product_list(request, catSlug=None):
     #Your code goes here
     #queries that fill, category, categories and products
@@ -30,7 +39,13 @@ def product_list(request, catSlug=None):
     {'category': category,
     'categories': categories,
     'products': products})
-    
+  
+"""
+Funcion que rellena el detalle de un producto seleccionado
+Entrada: id: id del producto que se va a mostrar
+	prodSlug: slug del producto
+Autor: Esther Lopez Ramos
+"""  
 def product_detail(request, id, prodSlug):
     #Your code goes here
     #query that returns a product with id=protId
