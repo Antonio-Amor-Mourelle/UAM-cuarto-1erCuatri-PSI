@@ -5,7 +5,7 @@ from numpy.distutils.from_template import item_re
 
 class ShoppingCart(object):
     cartKey = "shoppingCart"
-    
+
     def __init__(self,request):
         self.session=request.session
         cart=self.session.get(self.cartKey)
@@ -23,49 +23,53 @@ class ShoppingCart(object):
             val["units"]+=units
         else:
             self.cart[str(product.id)]={"units":units, "price":product.price}
-        
         self.saveCart()
-        
+
     def saveCart(self):
         self.session[self.cartKey]=self.cart
         self.session.modified=True
-        
+
     def removeProduct(self, product):
         """
         Autor: Esther Lopez Ramos
         Elimina un producto del carrito
         """
         del self.cart[str(product.id)]
+        self.saveCart()
         
     def __iter__(self):
         product_ids=self.cart.keys()
-        products=Products.objects.filter(id__in=product_ids)
+        products=Product.objects.filter(id__in=product_ids)
         for product in products :
             self.cart[str(product.id)]["product"]=product
-            
+
         for item in self.cart.values():
             item["price"]=Decimal(item["price"])
             item["total_price"]=item["price"]*item["units"]
             yield item
-            
+
     def __len__(self):
         """
         Autor: Esther Lopez Ramos
         Devuelve la longitud del carro entendiendo como la suma 
         de todas las cantidades de sus productos
         """
-        len = 0
+        length = 0
         for prod in self.cart.values():
             len += prod["units"]
-        return len
+        return length
     
     def get_total_price(self):
-        #TODO
-        return 
-            
+        """
+        Autor: Antonio Amor
+        Devuelve el precio total a pagar
+        """
+
+        pf=0
+        for item in self.cart.values():
+            pf+=Decimal(item["price"])*Decimal(item["units"])
+        return pf
+
     def clear(self):
         del self.session[self.cartKey]
         self.session.modified=True
-            
-            
-            
