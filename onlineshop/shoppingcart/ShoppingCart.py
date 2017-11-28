@@ -7,22 +7,22 @@ class ShoppingCart(object):
     cartKey = "shoppingCart"
     
     def __init__(self,request):
-         self.session=request.session
-         cart=self.session.get(self.cartKey)
-         if not cart:
-             cart=self.session[self.cartKey]={}
-         self.cart=cart
+        self.session=request.session
+        cart=self.session.get(self.cartKey)
+        if not cart:
+            cart=self.session[self.cartKey]={}
+        self.cart=cart
          
     def addProduct(self, product, units=1,update_units=False):
-        
-        #TODO: casos 1 nuevo prod 
-        #            2 mopdificar unidades
-        #CASE 1
-        val=self.session.get(str(product.id))
+        """
+        Autor: Antonio Amor Mourelle
+        Annade varias unidades de un articulo al carro
+        """
+        val = self.cart.get(str(product.id))
         if  val and update_units:
             val["units"]+=units
         else:
-            self.session[str(product.id)]={"units":units, "price":product.price}
+            self.cart[str(product.id)]={"units":units, "price":product.price}
         
         self.saveCart()
         
@@ -31,7 +31,11 @@ class ShoppingCart(object):
         self.session.modified=True
         
     def removeProduct(self, product):
-        #TODO
+        """
+        Autor: Esther Lopez Ramos
+        Elimina un producto del carrito
+        """
+        del self.cart[str(product.id)]
         
     def __iter__(self):
         product_ids=self.cart.keys()
@@ -45,8 +49,15 @@ class ShoppingCart(object):
             yield item
             
     def __len__(self):
-        #TODO count items carro (sumando unidades)
-        return
+        """
+        Autor: Esther Lopez Ramos
+        Devuelve la longitud del carro entendiendo como la suma 
+        de todas las cantidades de sus productos
+        """
+        len = 0
+        for prod in self.cart.values():
+            len += prod["units"]
+        return len
     
     def get_total_price(self):
         #TODO
