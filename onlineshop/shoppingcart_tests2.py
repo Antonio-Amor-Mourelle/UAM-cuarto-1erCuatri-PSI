@@ -1,19 +1,19 @@
 # Uncomment if you want to run tests in transaction mode with a final rollback
-from django.test import TestCase
+#from django.test import TestCase
 #uncomment this if you want to keep data after running tests
 from unittest import TestCase
 from django.core.urlresolvers import reverse
 from django.test import Client
 from shop.models import Product, Category
-from shoppingcart.shoppingcart import ShoppingCart
+from shoppingcart import ShoppingCart
 from PIL import Image
 from StringIO import StringIO
 from django.core.files.base import File
 
 from decimal import Decimal
 
-from shoppingcart.views import shoppingcart_list
-#from forms import CartAddProductForm
+from views import shoppingcart_list
+from forms import CartAddProductForm
 #python ./manage.py test shoppingcart.tests.shoppingCartTest --keepdb
 
 DEBUG = False

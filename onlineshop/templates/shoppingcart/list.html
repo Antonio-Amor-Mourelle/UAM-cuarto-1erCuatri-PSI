@@ -1,0 +1,44 @@
+{% extends 'shop/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Shopping cart{% endblock %}
+
+{% block header %}<h1 class="title">Summary of your order</h1>{% endblock %}
+   
+{% block shoppingcart %}Your cart is empty {% endblock %}
+
+{% block main %}
+   <div class="main-content">
+   		{% if shoppingcart %}
+   			<table>
+   				<tr>
+					<th>Image</th>
+   					<th colspan="2">Product</th>
+   					<th>Units</th>
+   					<th>Unit price</th>
+   					<th>Price</th>
+   				</tr>
+   				{% for info in shoppingcart %}
+   				<tr>
+   				
+   					<td><img class="mini-image" src="{{ MEDIA_URL }}{{info.product.image}}" 
+   					alt="{{info.product.prodName}}"></td>
+   					<td>{{info.product.prodName}}</td>
+   					<td><a href='#'>Remove</a></td>
+   					<td>{{info.units}}</td>
+   					<td>{{info.price}}</td>
+   					<td>{{info.totalprice}}</td>
+   				</tr>
+   				{% endfor %}
+   			</table>
+   			<h3>Total: {{shoppingcart.get_total_price}}</h3>
+   			<a href='#'>Go to checkout</a>
+   			<a href='{% url 'product_list' %}'>Continue shopping</a>
+   		{% else %}
+   			<h2>Your shopping cart is empty...</h2>
+   		{% endif %}   		
+		
+   </div>
+   
+{% endblock %}

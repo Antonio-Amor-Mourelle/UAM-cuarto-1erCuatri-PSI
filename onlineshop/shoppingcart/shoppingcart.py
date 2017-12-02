@@ -12,23 +12,28 @@ class ShoppingCart(object):
         if not cart:
             cart=self.session[self.cartKey]={}
         self.cart=cart
-         
+        
+    #Test: python manage.py test shoppingcart_tests.shoppingCartTest.test_shoppingCartAdd --keepdb  
     def addProduct(self, product, units=1,update_units=False):
         """
         Autor: Antonio Amor Mourelle
         Annade varias unidades de un articulo al carro
         """
+        
         val = self.cart.get(str(product.id))
-        if  val and update_units:
+        if val and update_units:
+            val["units"]=units
+        elif val:
             val["units"]+=units
         else:
-            self.cart[str(product.id)]={"units":units, "price":product.price}
+            self.cart[str(product.id)]={"units":units, "price": str(product.price)}
         self.saveCart()
 
     def saveCart(self):
         self.session[self.cartKey]=self.cart
         self.session.modified=True
 
+    #Test python manage.py test shoppingcart_tests.shoppingCartTest.test_shoppingCartRemoveProduct --keepdb 
     def removeProduct(self, product):
         """
         Autor: Esther Lopez Ramos
@@ -48,6 +53,7 @@ class ShoppingCart(object):
             item["total_price"]=item["price"]*item["units"]
             yield item
 
+    #Test python manage.py test shoppingcart_tests.shoppingCartTest.test_shoppingCartLen --keepdb 
     def __len__(self):
         """
         Autor: Esther Lopez Ramos
@@ -56,7 +62,7 @@ class ShoppingCart(object):
         """
         length = 0
         for prod in self.cart.values():
-            len += prod["units"]
+            length += prod["units"]
         return length
     
     def get_total_price(self):
@@ -67,7 +73,7 @@ class ShoppingCart(object):
 
         pf=0
         for item in self.cart.values():
-            pf+=Decimal(item["price"])*Decimal(item["units"])
+            pf+=Decimal(item["price"])*item["units"]
         return pf
 
     def clear(self):

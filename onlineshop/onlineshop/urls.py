@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^$', views.product_list, name='index'),
     url(r'^base/', views.base, name='base'),
     url(r'^shop/', include('shop.urls')),
+    url(r'^cart/', include('shoppingcart.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
