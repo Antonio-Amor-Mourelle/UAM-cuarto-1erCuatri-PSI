@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from shop.models import Category, Product
+from shoppingcart.forms import CartAddProductForm
 
 # Create your views here.
 """
@@ -49,9 +50,10 @@ Autor: Esther Lopez Ramos
 def product_detail(request, id, prodSlug):
     #Your code goes here
     #query that returns a product with id=protId
+    form = CartAddProductForm()
     try:
         product = Product.objects.get(prodSlug=prodSlug, id=id)
     except:
         product = None
         
-    return render(request, 'shop/detail.html', {'product': product})
+    return render(request, 'shop/detail.html', {'product': product, 'form': form})

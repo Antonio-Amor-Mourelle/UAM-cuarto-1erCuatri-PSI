@@ -13,7 +13,7 @@ from django.core.files.base import File
 from decimal import Decimal
 
 from shoppingcart.views import shoppingcart_list
-#from forms import CartAddProductForm
+from shoppingcart.forms import CartAddProductForm
 #python ./manage.py test shoppingcart.tests.shoppingCartTest --keepdb
 
 DEBUG = False
