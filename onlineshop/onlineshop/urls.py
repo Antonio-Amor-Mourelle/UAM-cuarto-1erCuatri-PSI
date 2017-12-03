@@ -19,12 +19,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from shop import views
 
-urlpatterns = [
-    url(r'^$', views.product_list, name='index'),
-    url(r'^base/', views.base, name='base'),
-    url(r'^shop/', include('shop.urls')),
-    url(r'^cart/', include('shoppingcart.urls')),
+urlpatterns = [    
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include('shop.urls')),
+    url(r'^base/', views.base, name='base'),
+    #url(r'^shop/', include('shop.urls')),
+    url(r'^cart/', include('shoppingcart.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, \

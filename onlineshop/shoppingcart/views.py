@@ -25,37 +25,30 @@ def shoppingcart_add(request, prod_id):
         form=CartAddProductForm(prod_id)
 
     if form.is_valid():
-        if product:
-            shoppingcart.saveCart()
+        if product: 
             units=form.cleaned_data['units']
             update_units=form.cleaned_data['update']
+            shoppingcart.addProduct(product=product,
+                            units=units,
+                            update_units=update_units)                       
+            shoppingcart.saveCart()
     else:
         print(form.errors)
             
-    shoppingcart.addProduct(product=product,
-                            units=units,
-                            update_units=update_units)
+    
     
     return redirect('shoppingcart_list')
-"""
 
-def shoppingcart_remove(request):
+def shoppingcart_remove(request, prod_id):
     shoppingcart= ShoppingCart(request)
 
-    ?????
-
-    if request.method =='POST':
-        form=CartRemoveProductForm(resquest.POST, prod_id)
-        if form.is_valid():
-            ????
-
-    else:
-
-
-    ????
-
-
-    shoppingcart.removeProduct(product=product)
+    try:
+        product=Product.objects.get(id=prod_id)
+        shoppingcart.removeProduct(product=product)
+        shoppingcart.saveCart()
+        
+    except Product.DoesNotExist:
+        product = None
+    
     return redirect('shoppingcart_list')
-"""
 

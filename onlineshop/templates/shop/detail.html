@@ -4,9 +4,9 @@
 
 {% block title %}{% if product %}{{product.prodName}}{% else %}Error{% endif %}{% endblock %}
 
-{% block header %}<h1 class="title">Product detail</h1>{% endblock %}
+{% block header %}Product detail{% endblock %}
    
-{% block shoppingcart %}Your cart is empty {% endblock %}
+{% block shoppingcart %}{% endblock %}
 
 {% block main %}
    <div class="main-content">
@@ -18,19 +18,18 @@
    			<p class="description">{{product.description}}</p>   			
    			<h2>{{product.price}}&euro;</h2>
    			
-   			<div>
-   				<form class="detail-form" method="post" action={% url 'shoppingcart_add' product.id %}>
-   					{% csrf_token %}
-   					 {% for hidden in form.hidden_fields %}
-                    	{{ hidden }}
-                	{% endfor %}
-   					{% for field in form.visible_fields %}
-	                    {{ field.errors }}
-        				{{ field.label_tag }} {{ field }}
-                	{% endfor %}
-   					<input type="submit" name="submit" value="Add to cart"/>	
-   				</form>
-   			</div>
+   			<form class="detail-form" method="post" action={% url 'shoppingcart_add' product.id %}>
+  				{% for field in form.visible_fields %}
+                    {{ field.errors }}
+       				{{ field.label_tag }} {{ field }}
+               	{% endfor %}
+               	{% csrf_token %}
+  					 {% for hidden in form.hidden_fields %}
+                   	{{ hidden }}
+               	{% endfor %}
+  					<input class="psbutton" type="submit" name="submit" value="Add to cart"/>	
+   			</form>
+   			
    			
    		{% else %}
    			<h2>An error has occurred...</h2>

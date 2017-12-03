@@ -11,13 +11,16 @@
     <body>
     	<header> 
     		<div id="basket">
+        	    Your <a href='{% url 'shoppingcart_list' %}'>cart</a> is empty 
         	    {% block shoppingcart %}Nothing so far{% endblock %}
             </div>
-    		{% block header %}Shop{% endblock %}
+    		<a class="title" href='{% url 'product_list' %}'>
+    			<h1 class="title">Shop - {% block header %}Base{% endblock %}</h1> 
+    		</a>
     		
     	</header>
 
-        <div>
+        <div id='content'>
             {% block main %}Nothing so far{% endblock %}
         </div>
 
