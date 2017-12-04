@@ -22,7 +22,7 @@ Autor: Antonio Amor Mourelle
 """
 def populate():
     products = {}
-    names = ["Refrigerator", "Washing-machine", "Dishwasher"]
+    names = ["refrigerator", "washing-machine", "dishwasher"]
     cats = ["refrigerators", "washing machines", "dishwashers"]
     
     for j in range(3):  
@@ -36,9 +36,9 @@ def populate():
             products[names[j]].append(dict)
         
     cats = {
-            "Refrigerators": {"products": products["Refrigerator"]},
-            "Washing machines": {"products": products["Washing-machine"]},
-            "Dishwashers": {"products": products["Dishwasher"]},
+            "Refrigerators": {"products": products["refrigerator"]},
+            "Washing machines": {"products": products["washing-machine"]},
+            "Dishwashers": {"products": products["dishwasher"]},
             }
     
     for cat, cat_data in cats.items():

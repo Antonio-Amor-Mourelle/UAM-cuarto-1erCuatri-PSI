@@ -22,7 +22,7 @@ except:
 #from shop.models import Product
 
 class onLineShopTester(unittest.TestCase):
-    POPULATE      = False # set to True if you  want to populate the database
+    POPULATE      = True # set to True if you  want to populate the database
     ADDPRODUCT    = True # set to True if you  want to add
                          # products to the shoppingcart
     REMOVEPRODUCT = True # set to True if you  want to remove
