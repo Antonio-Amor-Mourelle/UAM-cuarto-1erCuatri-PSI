@@ -11,7 +11,15 @@
     <body>
     	<header> 
     		<div id="basket">
-        	    Your <a href='{% url 'shoppingcart_list' %}'>cart</a> is empty 
+    			{% if shoppingcart|length <= 0 %}
+        	    	Your cart is empty 
+        	    {% else %}
+        	    	Your cart: 
+        	    	<a href='{% url 'shoppingcart_list' %}'>
+        	    		{{shoppingcart|length}} items,
+        	    		{{shoppingcart.get_total_price}}
+        	    	</a>
+        	    {% endif %}
         	    {% block shoppingcart %}Nothing so far{% endblock %}
             </div>
     		<a class="title" href='{% url 'product_list' %}'>
