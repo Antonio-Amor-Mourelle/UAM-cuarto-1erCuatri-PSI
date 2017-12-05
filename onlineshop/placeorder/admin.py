@@ -3,15 +3,15 @@ from django.contrib import admin
 
 # Register your models here.
 
-from placeorder.models import Order, Orderline
+from placeorder.models import Order, OrderLine
 
 # Register your models here.
 class OrderAdmin(admin.ModelAdmin):
     list_display = ("firstName", "familyName", "email", "address", "zip",
                     "city", "created", "updated", "paid")
     
-class OrderlineAdmin(admin.ModelAdmin):
-    list_display = ("order", "product", "unit", "pricePerUnit")
+class OrderLineAdmin(admin.ModelAdmin):
+    list_display = ("order", "product", "units", "pricePerUnit")
     
 admin.site.register(Order, OrderAdmin)
-admin.site.register(Orderline, OrderlineAdmin)
+admin.site.register(OrderLine, OrderLineAdmin)

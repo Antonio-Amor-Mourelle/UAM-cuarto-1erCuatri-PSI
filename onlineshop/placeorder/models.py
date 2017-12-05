@@ -10,7 +10,7 @@ class Order(models.Model):
     familyName=models.CharField(max_length=50, unique=False, null=False)
     email=models.EmailField()
     address=models.CharField(max_length=50, unique=False, null=False)
-    zip=models.CharField(max_length=50, unique=False, null=False)#postal code
+    zip=models.CharField(max_length=20, unique=False, null=False)#postal code
     city=models.CharField(max_length=50, unique=False, null=False)#postal code
     created=models.DateTimeField(default=now)
     updated=models.DateTimeField(default=now)
@@ -23,21 +23,21 @@ class Order(models.Model):
     
     def getgetTotalCost(self):
         total=0
-        for orderline in Orderline.objects.filter(order=self):
+        for orderline in OrderLine.objects.filter(order=self):
             total+=orderline.units*orderline.pricePerUnit
             
         
 
-class Orderline(models.Model):
+class OrderLine(models.Model):
     order=models.ForeignKey(Order, related_name='orderLines', null=False)
     product=models.ForeignKey(Product, related_name='productLines', null=False)
-    unit=models.IntegerField(default=0, null=False)
+    units=models.IntegerField(default=0, null=False)
     pricePerUnit=models.DecimalField(decimal_places=2, max_digits=5)
     
     def __str__(self):
-        return self.order + self.product
+        return self.order + " " + self.product
     def __unicode__(self):
-        return self.order + self.product
+        return self.order + " " + self.product
     
     def getProductCost(self):
         return self.pricePerUnit
