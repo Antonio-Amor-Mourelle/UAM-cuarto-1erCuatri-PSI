@@ -35,7 +35,7 @@
    			
    			<div class="options">
    				<h3>Total: {{shoppingcart.get_total_price}}</h3>
-   				<a class=psbutton href='#'>Go to checkout</a>
+   				<a class=psbutton href='{% url 'createOrder' %}'>Checkout</a>
    				<a class=psbutton href='{% url 'product_list' %}'>Continue shopping</a>
    			</div>
    		{% else %}

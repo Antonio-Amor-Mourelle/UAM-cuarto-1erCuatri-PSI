@@ -4,6 +4,9 @@ from __future__ import unicode_literals
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.timezone import now
+from django.core.validators import MinValueValidator
+from django.core.exceptions import ValidationError
+
 
 # Create your models here.
 """
@@ -40,7 +43,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to = 'images/products')
     description = models.TextField(max_length=1024, null=False)
     price = models.DecimalField(decimal_places=2, max_digits=5, null=False)
-    stock = models.IntegerField(default=0)
+    stock = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     availability = models.BooleanField(default=True)
     created = models.DateTimeField(default=now)
     updated = models.DateTimeField(default=now)
@@ -52,5 +55,7 @@ class Product(models.Model):
 
     
     def save(self, *args, **kwargs):
+        if self.stock < 0:
+            raise ValidationError("Product stock can't be less than 0")
         self.prodSlug = slugify(self.prodName)
         super(Product, self).save(*args, **kwargs)

@@ -1,0 +1,16 @@
+{% extends 'shop/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{% if shoppingcart|length > 0 %}Checkout{% else %}Error- Add products to your cart{% endif %}{% endblock %}
+
+{% block header %}Checkout{% endblock %}
+
+{% block shoppingcart %}{% endblock %}
+
+{% block main %}
+   <div class="main-content">
+		<h1>Your order has been successfully registered. Your order number is {{ordernumber}}</h1>
+   </div>
+
+{% endblock %}

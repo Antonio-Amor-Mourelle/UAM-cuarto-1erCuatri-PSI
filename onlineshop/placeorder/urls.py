@@ -1,6 +1,7 @@
 from django.conf.urls import url
-from shop import views
+from placeorder import views
 
 urlpatterns = [
-    url(r'^create_order/$', views.createOrder, name='createOrder'),
+    url(r'^create/$', views.createOrder, name='createOrder'),
+    url(r'^confirm_order/$', views.confirmOrder, name='confirmOrder'),
 ]

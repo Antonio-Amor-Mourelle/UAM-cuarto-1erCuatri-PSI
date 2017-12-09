@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^base/', views.base, name='base'),
     #url(r'^shop/', include('shop.urls')),
     url(r'^cart/', include('shoppingcart.urls')),
+    url(r'^orders/', include('placeorder.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, \

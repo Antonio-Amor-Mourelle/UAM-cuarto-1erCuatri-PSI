@@ -17,14 +17,15 @@ class Order(models.Model):
     paid=models.BooleanField(default=False)
     
     def __str__(self):
-        return self.firstName
+        return "%d" % self.id
     def __unicode__(self):
-        return self.firstName
+        return "%d" % self.id
     
-    def getgetTotalCost(self):
+    def getTotalCost(self):
         total=0
         for orderline in OrderLine.objects.filter(order=self):
-            total+=orderline.units*orderline.pricePerUnit
+            total+=orderline.getProductCost()
+        return total
             
         
 
@@ -35,10 +36,10 @@ class OrderLine(models.Model):
     pricePerUnit=models.DecimalField(decimal_places=2, max_digits=5)
     
     def __str__(self):
-        return self.order + " " + self.product
+        return self.order.__str__() + " " + self.product.__str__()
     def __unicode__(self):
-        return self.order + " " + self.product
+        return self.order.__unicode__() + " " + self.product.__unicode__()
     
     def getProductCost(self):
-        return self.pricePerUnit
+        return self.pricePerUnit * self.units
 
