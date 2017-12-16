@@ -6,6 +6,10 @@ from django.utils.timezone import now
 
 # Create your models here.
 class Order(models.Model):
+    """
+    Clase que define un pedido de un usuario
+    Autor: Antonio Amor
+    """
     firstName=models.CharField(max_length=50, unique=False, null=False)
     familyName=models.CharField(max_length=50, unique=False, null=False)
     email=models.EmailField()
@@ -30,6 +34,10 @@ class Order(models.Model):
         
 
 class OrderLine(models.Model):
+    """
+    Define la informacion que tiene el detalle de un pedido
+    Autor: Esther Lopez    
+    """
     order=models.ForeignKey(Order, related_name='orderLines', null=False)
     product=models.ForeignKey(Product, related_name='productLines', null=False)
     units=models.IntegerField(default=0, null=False)

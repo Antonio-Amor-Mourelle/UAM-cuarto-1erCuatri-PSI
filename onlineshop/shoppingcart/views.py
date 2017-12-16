@@ -6,11 +6,20 @@ from shop.models import Product
 
 # Create your views here.
 def shoppingcart_list (request) :
+    """
+    Proporciona las variables necesarias para el html del carro
+    Autor: Esther Lopez Ramos
+    """
+    form = CartAddProductForm()
     shoppingcart = ShoppingCart(request)
-    return render(request, 'shoppingcart/list.html',{'shoppingcart': shoppingcart})
+    return render(request, 'shoppingcart/list.html',{'shoppingcart': shoppingcart, 'form': form})
 
 
 def shoppingcart_add(request, prod_id):
+    """
+    Annade un producto al carro, o modifica sus unidades.
+    Autor: Antonio Amor 
+    """
     shoppingcart= ShoppingCart(request)
     try:
         product=Product.objects.get(id=prod_id)
@@ -40,6 +49,10 @@ def shoppingcart_add(request, prod_id):
     return redirect('shoppingcart_list')
 
 def shoppingcart_remove(request, prod_id):
+    """
+    Borra todas las unidades del producto pasado por argumento del carro
+    Autor: Esther Lopez
+    """
     shoppingcart= ShoppingCart(request)
 
     try:

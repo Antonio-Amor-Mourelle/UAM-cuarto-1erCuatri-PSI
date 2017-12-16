@@ -18,19 +18,7 @@
 	       {% if shoppingcart|length <= 0 %}
 	       Add products to your cart.
 	       {% else%}
-	           <form class="detail-form" method="post" action='{% url 'confirmOrder' %}'>
-	              {% for field in form.visible_fields %}
-	                {{ field.errors }}
-	                   {{ field.label_tag }} {{ field }}
-	                   <br />
-	               {% endfor %}
-	               {% csrf_token %}
-	                   {% for hidden in form.hidden_fields %}
-	                   {{ hidden }}
-	               {% endfor %}
-	              <input class="psbutton" type="submit" name="Confirm" value="Place order"/>
-	           </form>
-	           <div class="order-sum">
+	       <div class="order-sum">
 	           		<h2>Your order</h2>
 	           		<ul>
 	           		{% for info in shoppingcart %}
@@ -42,6 +30,23 @@
 	           		</ul>
 	           		Total: {{shoppingcart.get_total_price}}
 	           </div>
+	           <form class="checkout-form" method="post" action='{% url 'confirmOrder' %}'>
+	              {% for field in form.visible_fields %}
+	                {{ field.errors }}
+	                <div class="checkout-row">
+	                   {{ field.label_tag }} 
+	                   <br />
+	                   {{ field }}
+	                   <br />
+	                   </div>
+	               {% endfor %}
+	               {% csrf_token %}
+	                   {% for hidden in form.hidden_fields %}
+	                   {{ hidden }}
+	               {% endfor %}
+	              <input class="psbutton" type="submit" name="Confirm" value="Place order"/>
+	           </form>
+	           
 	       {% endif %}
 	   {% endif %}
    </div>

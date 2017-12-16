@@ -21,7 +21,7 @@
    			<form class="detail-form" method="post" action={% url 'shoppingcart_add' product.id %}>
   				{% for field in form.visible_fields %}
                     {{ field.errors }}
-       				{{ field.label_tag }} {{ field }}
+       				{{ field.label_tag }}{{ field }}
                	{% endfor %}
                	{% csrf_token %}
   					 {% for hidden in form.hidden_fields %}

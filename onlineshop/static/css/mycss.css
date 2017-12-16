@@ -168,3 +168,32 @@ select {
 	height: 40px;
 }
 
+.checkout-form {
+	padding-left: 30%;
+	padding-right: 30%;
+	padding-top: 10%;
+	max-width: 200px;
+}
+
+.checkout-row{
+	margin: 5px;
+	float: left;
+}
+
+.order-sum {
+	float: right;
+	max-width: 200px;	
+	padding-top: 10%;
+}
+
+.order-sum h2{
+	margin: 0;
+}
+
+.errorlist{
+	color: red;
+}
+
+
+
+

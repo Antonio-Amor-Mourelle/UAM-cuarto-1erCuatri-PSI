@@ -3,6 +3,10 @@ from models import Order
 
 
 class OrderCreateForm(forms.ModelForm):
+    """
+    Formulario que pide los datos necesarios al usuario para realizar el pedido
+    Autor: Antonio Amor
+    """
     firstName=forms.CharField(max_length=50, help_text="First name", required=True)
     familyName=forms.CharField(max_length=50, help_text="Family name", required=True)
     email=forms.EmailField(help_text="e-mail", required=True)

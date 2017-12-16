@@ -8,10 +8,19 @@ from django.core.exceptions import ValidationError
 
 # Create your views here.
 def createOrder(request):
+    """
+    Crea el formulario para incluirlo en la pagina de confirmacion del pedido
+    Autor: Antonio Amor
+    """
     form = OrderCreateForm()
     return render(request, 'placeorder/createOrder.html', {'form': form})
 
 def confirmOrder(request):
+    """
+    Comprueba que el formulario de confirmacion del pedido se ha rellenado correctamente 
+    y en caso afirmativo agrega el pedido a la base de datos
+    Autor: Esther Lopez
+    """
     shoppingcart = ShoppingCart(request)
     
     if request.method =='POST':

@@ -25,8 +25,24 @@
    					<td><img class="mini-image" src="{{ MEDIA_URL }}{{info.product.image}}" 
    					alt="{{info.product.prodName}}"></td>
    					<td>{{info.product.prodName}}</td>
-   					<td><a href='{% url 'shoppingcart_remove' info.product.id %}'>Remove</a></td>
-   					<td>{{info.units}}</td>
+   					<td> 
+   					<a href='{% url 'shoppingcart_remove' info.product.id %}'>Remove</a>
+   					</td>
+   					<td>
+   					<form class="detail-form" method="post" action={% url 'shoppingcart_add' info.product.id %}>
+	   					<select id="id_units" name="units">
+	       					{% for option, value in form.fields.units.widget.choices %}
+	       						<option value="{{option}}" {% if option == info.units %} selected {% endif %}>
+	       						{{value}}
+	       						</option>
+	       					{% endfor %}
+	       					</select>
+	               		{% csrf_token %}
+	  					<input id="id_update" name="update" type="hidden" value="True" />
+	               		
+	   					<input class="psbutton" type="submit" name="submit" value="Update"/>
+   					</form>
+   					</td>
    					<td>{{info.price}}</td>
    					<td>{{info.total_price}}</td>
    				</tr>
