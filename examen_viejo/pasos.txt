@@ -1,0 +1,31 @@
+django-admin[.py] startproject <nombre>
+python manage.py startapp <nombre>
+NO OLVIDAR METER EL NOMBRE DE LA APP EN SETTINGS INSTALLED_APPS
+
+PARA LA BASE DE DATOS
+Crear los modelos en models.py
+Crear el admin de los modelos en admin.py
+
+Configurar postgres en settings con:
+DATABASES = {}
+if os.getenv('SQLITE', False):
+    DATABASES['default'] = {
+             'ENGINE': 'django.db.backends.sqlite3',
+             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+    
+else:
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config()
+
+NO OLVIDAR CREAR LA BASE DE DATOS
+createdb -U alumnodb examen
+Y HACER EL EXPORT
+export DATABASE_URL='postgres://alumnodb:alumnodb@localhost:5432/examen'
+
+NO OLVIDAR CREAR EL SUPERUSUARIO
+
+NO OLVIDAR METER EL DIRECTORIO DE templates en settings.py
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+'DIRS': [TEMPLATE_DIR],
+

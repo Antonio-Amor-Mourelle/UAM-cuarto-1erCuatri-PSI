@@ -1,0 +1,40 @@
+{% extends 'shop/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{% if product %}{{product.prodName}}{% else %}Error{% endif %}{% endblock %}
+
+{% block header %}Product detail{% endblock %}
+   
+{% block shoppingcart %}{% endblock %}
+
+{% block main %}
+   <div class="main-content">
+   		{% if product %}
+   			<img class="big-image" src="{{ MEDIA_URL }}{{product.image}}" alt="{{product.prodName}}">
+   			<h2>Name: {{product.prodName}}</h2>
+   			<h3><a href="{% url 'product_list_by_category' product.category.catSlug %}">
+   			Category: {{product.category.catName}}</a></h3>
+   			<p class="description">{{product.description}}</p>   			
+   			<h2>{{product.price}}&euro;</h2>
+   			
+   			<form class="detail-form" method="post" action={% url 'shoppingcart_add' product.id %}>
+  				{% for field in form.visible_fields %}
+                    {{ field.errors }}
+       				{{ field.label_tag }}{{ field }}
+               	{% endfor %}
+               	{% csrf_token %}
+  					 {% for hidden in form.hidden_fields %}
+                   	{{ hidden }}
+               	{% endfor %}
+  					<input class="psbutton" type="submit" name="submit" value="Add to cart"/>	
+   			</form>
+   			
+   			
+   		{% else %}
+   			<h2>An error has occurred...</h2>
+   		{% endif %}   		
+		
+   </div>
+   
+{% endblock %}

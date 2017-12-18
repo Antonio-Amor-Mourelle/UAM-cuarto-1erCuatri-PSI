@@ -1,0 +1,53 @@
+{% extends 'shop/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{% if category %}{{category.catName}}{% else %}Products{% endif %}{% endblock %}
+
+{% block header %}Products{% endblock %}
+   
+{% block shoppingcart %}{% endblock %}
+
+{% block main %}
+   <nav id="cat-menu">
+		<h3>Categories</h3>
+		{% if categories %}
+		<ul>
+			    <a href="{% url 'product_list' %}">
+			    <li>All</li>
+			    </a>
+			{% for category in categories %}
+				<a href="{% url 'product_list_by_category' category.catSlug %}">
+		    	<li>{{category.catName}}</li>
+		    	</a>
+		    {% endfor %}		
+		</ul>
+		{% else %}
+			<p>Ups! We haven't got any categories so far.</p>
+		{% endif %}
+   </nav>
+   <div class="main-content">
+   		{% if category %}
+   			<h2>{{category.catName}}</h2>
+   		{% else %}
+   			<h2>Products</h2>
+   		{% endif %}
+   		
+   		{% if products %}
+	   		{% for product in products %}
+	   			<span class="product-card">
+	                <a class="product-card" href="{% url 'product_detail' product.id product.prodSlug %}">
+	                    <img class="little-image" src="{{ MEDIA_URL }}{{product.image}}" alt="{{product.prodName}}">
+		                <p>{{product.prodName}}</p>
+		                <p>{{product.price}}&euro;</p>
+	                </a> 
+	            </span>
+	   		{% endfor %}
+	   	{% else %}
+	   		<p>Sorry, we haven't found any products</p>
+	   	{% endif %} 
+   		
+		
+   </div>
+   
+{% endblock %}

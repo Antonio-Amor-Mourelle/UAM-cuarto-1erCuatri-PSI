@@ -1,0 +1,63 @@
+{% extends 'shop/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Shopping cart{% endblock %}
+
+{% block header %}Summary of your order{% endblock %}
+   
+{% block shoppingcart %}{% endblock %}
+
+{% block main %}
+   <div class="main-content">
+   		{% if shoppingcart %}
+   			<table>
+   				<tr>
+					<th>Image</th>
+   					<th colspan="2">Product</th>
+   					<th>Units</th>
+   					<th>Unit price</th>
+   					<th>Price</th>
+   				</tr>
+   				{% for info in shoppingcart %}
+   				<tr>
+   				
+   					<td><img class="mini-image" src="{{ MEDIA_URL }}{{info.product.image}}" 
+   					alt="{{info.product.prodName}}"></td>
+   					<td>{{info.product.prodName}}</td>
+   					<td> 
+   					<a href='{% url 'shoppingcart_remove' info.product.id %}'>Remove</a>
+   					</td>
+   					<td>
+   					<form class="detail-form" method="post" action={% url 'shoppingcart_add' info.product.id %}>
+	   					<select id="id_units" name="units">
+	       					{% for option, value in form.fields.units.widget.choices %}
+	       						<option value="{{option}}" {% if option == info.units %} selected {% endif %}>
+	       						{{value}}
+	       						</option>
+	       					{% endfor %}
+	       					</select>
+	               		{% csrf_token %}
+	  					<input id="id_update" name="update" type="hidden" value="True" />
+	               		
+	   					<input class="psbutton" type="submit" name="submit" value="Update"/>
+   					</form>
+   					</td>
+   					<td>{{info.price}}</td>
+   					<td>{{info.total_price}}</td>
+   				</tr>
+   				{% endfor %}
+   			</table>
+   			
+   			<div class="options">
+   				<h3>Total: {{shoppingcart.get_total_price}}</h3>
+   				<a class=psbutton href='{% url 'createOrder' %}'>Checkout</a>
+   				<a class=psbutton href='{% url 'product_list' %}'>Continue shopping</a>
+   			</div>
+   		{% else %}
+   			<h2>Your shopping cart is empty...</h2>
+   		{% endif %}   		
+		
+   </div>
+   
+{% endblock %}

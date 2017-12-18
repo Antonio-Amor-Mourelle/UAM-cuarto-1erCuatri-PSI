@@ -1,0 +1,36 @@
+{% load staticfiles %}
+{% block extra_css %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/mycss.css" %}">
+{% endblock extra_css %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shop - {% block title %}Base{% endblock %}</title>
+    </head>
+
+    <body>
+    	<header> 
+    		<div id="basket">
+    			{% if shoppingcart|length <= 0 %}
+        	    	Your cart is empty 
+        	    {% else %}
+        	    	Your cart: 
+        	    	<a href='{% url 'shoppingcart_list' %}'>
+        	    		{{shoppingcart|length}} items,
+        	    		{{shoppingcart.get_total_price}}
+        	    	</a>
+        	    {% endif %}
+        	    {% block shoppingcart %}Nothing so far{% endblock %}
+            </div>
+    		<a class="title" href='{% url 'product_list' %}'>
+    			<h1 class="title">Shop - {% block header %}Base{% endblock %}</h1> 
+    		</a>
+    		
+    	</header>
+
+        <div id='content'>
+            {% block main %}Nothing so far{% endblock %}
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,199 @@
+body {
+	margin: 0;
+	background-color: #CCC9DC;	
+	color: #1B2A41;
+}	
+
+header {
+	position: static;
+	top: 0;
+	text-align: center;
+	background-color: #1B2A41;
+	width: 100%;
+	height: 75px;
+	color: #CCC9DC;
+}
+
+h1.title {
+	padding-top: 15px;
+}
+
+#basket {
+	float: right;
+	padding-top: 50px;
+	padding-right: 10px;
+}
+.little-image {
+	width: 160px;
+	height: 245px;
+	padding: 5px;
+}
+
+.product-card {
+	display: inline-block;
+	padding: 0;
+}
+p {
+	text-align: center;
+	margin-top: 0;
+}
+
+.product-card:hover{
+	color: #CCC9DC;
+	background-color: #1B2A41;
+}
+
+.main-content {
+	margin-left: 170px;
+	margin-right: 170px;
+	align-content: center;
+}
+
+ #cat-menu {
+	float: left;
+	max-width: 160px;
+	margin-left: 20px;
+	
+}
+
+nav ul {
+	list-style: none;
+	padding: 0;
+}
+
+nav ul li{
+	margin: 5px;
+}
+
+nav a{
+	min-width: 100%;
+}
+
+nav ul li:hover{
+	color: #CCC9DC;
+	background-color: #1B2A41;
+}
+
+a {
+	text-decoration: none;
+	color: #1B2A41;
+	min-width: 100%;
+}
+header a {
+	color: #CCC9DC;
+}
+
+a:hover{
+	color: #324A5F;
+}
+
+a.title{
+	color: #CCC9DC;
+}
+
+.big-image{
+	float: left;
+	margin-right: 20px;
+	height: 300px;
+	width: 200px;
+}
+.description{
+	text-align: justify;
+}
+.mini-image{
+	width: 60px;
+    height: 90px;
+}
+
+table a{
+	color: #CCC9DC;
+}
+table a:hover{
+	color: #CCC9DC;
+	text-decoration: underline;
+}
+
+table{
+	margin-right:auto;
+    text-align: center;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 75%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    color: #CCC9DC;
+}
+th {
+    border: 0.1em solid #dddddd;
+    padding: 8px;
+    text-align: center;
+}
+
+td {
+    border: 0.1em solid #dddddd;
+    overflow: hidden;
+    padding: 8px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #1B2A41;
+}
+
+tr:nth-child(odd) {
+    background-color: #324A5F;
+}
+
+.psbutton {
+	color: #CCC9DC;
+	background-color: #1B2A41;
+	width: 80px;
+	height: 40px;
+	margin: 5px;
+	padding: 5px;
+}
+.options{
+	float: right;
+	max-width: 500px;
+	padding-right: 120px;
+	text-align: right;
+	margin-bottom: 5%;
+}
+
+select {
+	color: #CCC9DC;
+	background-color: #1B2A41;
+	height: 40px;
+}
+
+.checkout-form {
+	padding-left: 30%;
+	padding-right: 30%;
+	padding-top: 10%;
+	max-width: 200px;
+}
+
+.checkout-row{
+	margin: 5px;
+	float: left;
+}
+
+.order-sum {
+	float: right;
+	max-width: 200px;	
+	padding-top: 10%;
+}
+
+.order-sum h2{
+	margin: 0;
+}
+
+.errorlist{
+	color: red;
+}
+
+
+
+
