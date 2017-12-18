@@ -1,0 +1,19 @@
+<html>
+    <head>
+    </head>
+    <body>
+    {% if error %}
+        {{error}}
+    {% endif %}
+
+    <table>
+    {% for reserva in reservas %}
+        <tr>
+            <th>{{ reserva.id }}</th>
+            <td>{{ reserva.destino.nombreD }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    </body>
+</html>
